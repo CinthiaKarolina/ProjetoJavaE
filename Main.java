@@ -18,29 +18,29 @@ public class Main {
                 ImpressoraDLL.class
         );
 
-        int abreConexaoImpressora(int tipo, String modelo, String conexao, int param);
+        int AbreConexaoImpressora(int tipo, String modelo, String conexao, int param);
 
-        int fechaConexaoImpressora();
+        int FechaConexaoImpressora();
 
-        int impressaoTexto(String dados, int posicao, int estilo, int tamanho);
+        int ImpressaoTexto(String dados, int posicao, int estilo, int tamanho);
 
         int Corte(int avanco);
 
-        int impressaoQRCode(String dados, int tamanho, int nivelCorrecao);
+        int ImpressaoQRCode(String dados, int tamanho, int nivelCorrecao);
 
-        int impressaoCodigoBarras(int tipo, String dados, int altura, int largura, int HRI);
+        int ImpressaoCodigoBarras(int tipo, String dados, int altura, int largura, int HRI);
 
-        int avancaPapel(int linhas);
+        int AvancaPapel(int linhas);
 
-        int statusImpressora(int param);
+        int StatusImpressora(int param);
 
-        int abreGavetaElgin();
+        int AbreGavetaElgin();
 
-        int abreGaveta(int pino, int ti, int tf);
+        int AbreGaveta(int pino, int ti, int tf);
 
-        int sinalSonoro(int qtd, int tempoInicio, int tempoFim);
+        int SinalSonoro(int qtd, int tempoInicio, int tempoFim);
 
-        int modoPagina();
+        int ModoPagina();
 
         int LimpaBufferModoPagina();
 
@@ -52,9 +52,9 @@ public class Main {
 
         int PosicaoImpressaoVertical(int posicao);
 
-        int imprimeXMLSAT(String dados, int param);
+        int ImprimeXMLSAT(String dados, int param);
 
-        int imprimeXMLCancelamentoSAT(String dados, String assQRCode, int param);
+        int ImprimeXMLCancelamentoSAT(String dados, String assQRCode, int param);
     }
 
     private static boolean conexaoAberta = false;
@@ -96,7 +96,7 @@ public class Main {
 
 
     //Configura a conexao quando o usuario digitar 1
-    public static void configurarConexao() {
+    public static void ConfigurarConexao() {
 
         System.out.println("Digite o tipo de conexão (ex: 1 para USB, 2 para serial, etc.): "); // digitar o tipo de conexao
         tipo = scanner.nextInt();
@@ -117,7 +117,7 @@ public class Main {
 
 
     //Abre a conexao quando a usuario digita 2
-    public static void abrirConexao () {
+    public static void AbrirConexaoImpressora () {
 
         if (!conexaoAberta) {
             int retorno = ImpressoraDLL.INSTANCE.AbreConexaoImpressora(tipo, modelo, conexao, parametro);
@@ -134,7 +134,7 @@ public class Main {
 
 
     //Fecha a conexao com impressora se o usuario digitar 0
-    public static void fecharConexao () {
+    public static void FecharConexaoImpressora () {
         int retorno = ImpressoraDLL.INSTANCE.FechaConexaoImpressora();
         if (retorno == 0) {
             conexaoAberta = false;
@@ -147,7 +147,7 @@ public class Main {
 
 
     //Imprime o texto na impressora DDL
-   public static void impressaoTexto () {
+    public static void ImpressaoTexto () {
         if (conexaoAberta) {
             int retorno = ImpressoraDLL.INSTANCE.ImpressaoTexto("Teste de impressao", 1, 4, 0);
             if (retorno == 0) {
@@ -163,7 +163,7 @@ public class Main {
 
 
     // Imprime o QRCode na impressoraDLL
-    public static void impressaoQRCode() {
+    public static void ImpressaoQRCode() {
         if (conexaoAberta) {
             int retorno = ImpressoraDLL.INSTANCE.ImpressaoQRCode("Teste de QRCode", 6, 4);
             if (retorno == 0) {
@@ -178,7 +178,7 @@ public class Main {
     }
 
     //Abre a gaveta elgin; nao precisa da conexao estar aberta
-    public static void abreGavetaElgin() {
+    public static void AbreGavetaElgin() {
         if (conexaoAberta) {
             int retorno = ImpressoraDLL.INSTANCE.AbreGavetaElgin();
             if (retorno == 0) {
@@ -191,7 +191,7 @@ public class Main {
         }
     }
 
-    public static void impressaoCodigoBarras() {  // Imprimir o código de barras
+    public static void ImpressaoCodigoBarras() {  // Imprimir o código de barras
         if (conexaoAberta) {
             int retorno = ImpressoraDLL.INSTANCE.ImpressaoCodigoBarras(8, "{A012345678912", 100, 2, 3);
             if (retorno == 0) {
@@ -206,7 +206,7 @@ public class Main {
     }
 
 
-	public static void avancaPapel() {
+    public static void AvancaPapel() {
         if (conexaoAberta) {
             int retorno = ImpressoraDLL.INSTANCE.AvancaPapel(2);
             if (retorno == 0) {
@@ -220,7 +220,7 @@ public class Main {
     }
 
 
-    public static void impressaoXMLSAT() {  // Imprimir em forma de SAT
+    public static void ImprimeXMLSAT() {  // Imprimir em forma de SAT
 
         if (conexaoAberta) {
             String dados = "path=C:\\Users\\cinthia_vieira\\Downloads\\Java-Aluno EM\\Java-Aluno EM\\Java-Aluno EM\\XMLSAT.xml";    // Abre conexão com a impressora
@@ -238,9 +238,9 @@ public class Main {
 
 
     //Cancela a impressao do XMLSAT
-    public static void imprimeXMLCancelamentoSAT() {
+    public static void ImprimeXMLCancelamentoSAT() {
         if (conexaoAberta) {
-            String assQRCode = 							"Q5DLkpdRijIRGY6YSSNsTWK1TztHL1vD0V1Jc4spo/CEUqICEb9SFy82ym8EhBRZjbh3btsZhF+sjHqEMR159i4agru9x6KsepK/q0E2e5xlU5cv3m1woYfgHyOkWDNcSdMsS6bBh2Bpq6s89yJ9Q6qh/J8YHi306ce9Tqb/drKvN2XdE5noRSS32TAWuaQEVd7u+TrvXlOQsE3fHR1D5f1saUwQLPSdIv01NF6Ny7jZwjCwv1uNDgGZONJdlTJ6p0ccqnZvuE70aHOI09elpjEO6Cd+orI7XHHrFCwhFhAcbalc+ZfO5b/+vkyAHS6CYVFCDtYR9Hi5qgdk31v23w==";
+            String assQRCode = "Q5DLkpdRijIRGY6YSSNsTWK1TztHL1vD0V1Jc4spo/CEUqICEb9SFy82ym8EhBRZjbh3btsZhF+sjHqEMR159i4agru9x6KsepK/q0E2e5xlU5cv3m1woYfgHyOkWDNcSdMsS6bBh2Bpq6s89yJ9Q6qh/J8YHi306ce9Tqb/drKvN2XdE5noRSS32TAWuaQEVd7u+TrvXlOQsE3fHR1D5f1saUwQLPSdIv01NF6Ny7jZwjCwv1uNDgGZONJdlTJ6p0ccqnZvuE70aHOI09elpjEO6Cd+orI7XHHrFCwhFhAcbalc+ZfO5b/+vkyAHS6CYVFCDtYR9Hi5qgdk31v23w==";
             String dados = "path=C:\\Users\\cinthia_vieira\\Downloads\\Java-Aluno EM\\Java-Aluno EM\\Java-Aluno EM\\XMLSAT.xml";
             int retorno = ImpressoraDLL.INSTANCE.ImprimeXMLCancelamentoSAT(dados, assQRCode, 0);
             if (retorno == 0) {
@@ -251,12 +251,13 @@ public class Main {
         } else {
             System.out.println("Nenhuma conexão está aberta.");
         }
+    }
 
 
     //Abre a gaveta
-    public static void abrirGaveta () {
+    public static void AbrirGaveta () {
         if (conexaoAberta) {
-            int retorno = ImpressoraDLL.INSTANCE.AbreGaveta(1,  5, 10); // pino, tempo i, tempo f
+            int retorno = ImpressoraDLL.INSTANCE.AbrirGaveta(1,  5, 10); // pino, tempo i, tempo f
             if (retorno == 0) {
                 System.out.println("Gaveta aberta");
             } else {
@@ -267,8 +268,8 @@ public class Main {
         }
     }
 
-   //Emite um sinal sonoro quando o usuario digita 10
-    public static void sinalSonoro () {
+    //Emite um sinal sonoro quando o usuario digita 10
+    public static void SinalSonoro () {
         if (conexaoAberta) {
             int retorno = ImpressoraDLL.INSTANCE.SinalSonoro(4, 5, 5); // qnt, tempo i, tempo f
             if (retorno == 0) {
@@ -308,55 +309,55 @@ public class Main {
             String escolha = capturarEntrada("\nDigite a opção desejada: ");
 
             if (escolha.equals("0")) {
-                fecharConexao();
+                FecharConexao();
                 System.out.println("Programa encerrado.");
                 break;
             }
 
             switch (escolha) {
                 case "1":
-                    configurarConexao();
+                    ConfigurarConexaoImpressora();
                     break;
                 case "2":
-                    abrirConexao();
+                    AbrirConexaoImpressora();
                     break;
                 case "3":
-                    impressaoTexto();
+                    ImpressaoTexto();
                     ImpressoraDLL.INSTANCE.Corte(5);
                     break;
 
                 case "4":
-                    impressaoQRCode();
+                    ImpressaoQRCode();
                     ImpressoraDLL.INSTANCE.Corte(5);
                     break;
 
                 case "5":
-                    impressaoCodigoBarras();
+                    ImpressaoCodigoBarras();
                     ImpressoraDLL.INSTANCE.Corte(5);
 
                     break;
 
                 case "6":
-                    impressaoXMLSAT();
+                    ImprimeXMLSAT();
                     ImpressoraDLL.INSTANCE.Corte(5);
                     break;
 
                 case "7":
-                    imprimeXMLCancelamentoSAT();
+                    ImprimeXMLCancelamentoSAT();
                     ImpressoraDLL.INSTANCE.Corte(5);
                     break;
 
 
                 case "8":
-                    abreGavetaElgin();
+                    AbreGavetaElgin();
                     break;
 
                 case "9":
-                    abrirGaveta();
+                    AbrirGaveta();
                     break;
 
                 case "10":
-                    sinalSonoro();
+                    SinalSonoro();
                     break;
 
 
