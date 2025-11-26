@@ -182,8 +182,11 @@ Erro: "Arquivo XML não encontrado"
 
 
 - Desenvolvedores
-Cinthia Vieira
-Giovana Migliorini
-Alexandre de Oliveira
-Daniel Rhalley
-Fabiano Tavares
+Alexandre de Oliveira, 
+Cinthia Vieira, 
+Daniel Rhalley, 
+Fabiano Tavares, 
+Giovana Migliorini.
+
+
+
